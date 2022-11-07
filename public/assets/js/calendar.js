@@ -2,8 +2,9 @@ $(function () {
     var parametreFilter = "x";
 
     $("#calendar").fullCalendar({
+        lang: 'fr',
         header: {
-            left: "prev, next today",
+            left: "prev, next",
             center: "title",
             right: "month, agendaWeek, agendaDay"
         },
@@ -43,6 +44,6 @@ $(function () {
                     param: parametreFilter
                 }
             }
-        ]
+        ],
     });
 });
