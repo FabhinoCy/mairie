@@ -22,6 +22,15 @@ class Evenement
     #[ORM\Column]
     private ?\DateTimeImmutable $endAt = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $backgroundcolor = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $bordercolor = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $textcolor = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +68,42 @@ class Evenement
     public function setEndAt(\DateTimeImmutable $endAt): self
     {
         $this->endAt = $endAt;
+
+        return $this;
+    }
+
+    public function getBackgroundcolor(): ?string
+    {
+        return $this->backgroundcolor;
+    }
+
+    public function setBackgroundcolor(string $backgroundcolor): self
+    {
+        $this->backgroundcolor = $backgroundcolor;
+
+        return $this;
+    }
+
+    public function getBordercolor(): ?string
+    {
+        return $this->bordercolor;
+    }
+
+    public function setBordercolor(string $bordercolor): self
+    {
+        $this->bordercolor = $bordercolor;
+
+        return $this;
+    }
+
+    public function getTextcolor(): ?string
+    {
+        return $this->textcolor;
+    }
+
+    public function setTextcolor(string $textcolor): self
+    {
+        $this->textcolor = $textcolor;
 
         return $this;
     }

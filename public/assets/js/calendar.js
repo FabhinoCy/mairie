@@ -44,7 +44,7 @@ $(function () {
                     });
             },
             {
-                url: "toto",
+                url: "file.php",
                 type: "GET",
                 data: {
                     param: parametreFilter
