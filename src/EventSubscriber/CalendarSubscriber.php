@@ -58,11 +58,13 @@ class CalendarSubscriber implements EventSubscriberInterface
         }*/
 
         foreach ($evenements as $evenement) {
+
+            //dd($evenement);
             // this create the events with your data (here evenement data) to fill calendar
             $evenementEvent = new Event(
                 $evenement->getTitle(),
                 $evenement->getBeginAt(),
-                $evenement->getEndAt() // If the end date is null or not defined, a all day event is created.
+                $evenement->getEndAt(), // If the end date is null or not defined, a all day event is created.
             );
 
             /*
@@ -72,10 +74,16 @@ class CalendarSubscriber implements EventSubscriberInterface
              * and: https://github.com/fullcalendar/fullcalendar/blob/master/src/core/options.ts
              */
 
+            $backgroundColor = $evenement->getBackgroundcolor();
+            $borderColor = $evenement->getBordercolor();
+            $textColor = $evenement->getTextcolor();
+
             $evenementEvent->setOptions([
-                'backgroundColor' => 'red',
-                'borderColor' => 'red',
+                'backgroundColor' => $backgroundColor,
+                'borderColor' => $borderColor,
+                'textColor' => $textColor
             ]);
+
             $evenementEvent->addOption(
                 'url',
                 $this->router->generate('app_evenement_show', [
