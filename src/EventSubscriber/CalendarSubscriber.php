@@ -46,6 +46,17 @@ class CalendarSubscriber implements EventSubscriberInterface
             ->getResult()
         ;
 
+        /*$jours = json_decode(file_get_contents('https://calendrier.api.gouv.fr/jours-feries/metropole.json'), true);
+        //dd(array_keys($jours));
+        foreach ($jours as $jour) {
+            $evenementEvent = new Event(
+                //$jour->getTitle(),
+                //$jour->getBeginAt(),
+                //$jour->getEndAt() // If the end date is null or not defined, a all day event is created.
+            dd($jour)
+            );
+        }*/
+
         foreach ($evenements as $evenement) {
             // this create the events with your data (here evenement data) to fill calendar
             $evenementEvent = new Event(
