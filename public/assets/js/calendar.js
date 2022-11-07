@@ -1,10 +1,3 @@
-fetch("https://calendrier.api.gouv.fr/jours-feries/metropole.json")
-    .then((response) => response.json())
-    .then(function (data) {
-        console.log(data)
-    })
-
-
 $(function () {
     var parametreFilter = "x";
 

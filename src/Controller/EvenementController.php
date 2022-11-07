@@ -29,6 +29,7 @@ class EvenementController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $evenement->setUser($this->getUser());
             $evenementRepository->save($evenement, true);
 
             return $this->redirectToRoute('app_evenement_index', [], Response::HTTP_SEE_OTHER);
