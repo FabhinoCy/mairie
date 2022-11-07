@@ -25,6 +25,7 @@ class EvenementType extends AbstractType
             ])
             ->add('beginAt')
             ->add('endAt')
+            ->add('public')
         ;
     }
 
