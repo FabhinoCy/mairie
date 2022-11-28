@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     filters: JSON.stringify({})
                 },
                 failure: () => {
-                    alert("There was an error while fetching FullCalendar!");
+                    // alert("There was an error while fetching FullCalendar!");
                 },
             },
             function (info, successCallback, failureCallback) {
