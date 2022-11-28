@@ -27,7 +27,7 @@ $(function () {
                         let holidays = [];
 
                         for (const day in data) {
-                            console.log(`${day}: ${data[day]}`);
+                            // console.log(`${day}: ${data[day]}`);
                             holidays.push({
                                 title: data[day],
                                 start: day,
@@ -36,13 +36,6 @@ $(function () {
                         }
                         callback(holidays);
                     });
-            },
-            {
-                url: "file.php",
-                type: "GET",
-                data: {
-                    param: parametreFilter
-                }
             }
         ],
     });
