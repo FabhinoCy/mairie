@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                         successCallback(events);
                     }).catch((error) => {
-                        console.error(error);
                         failureCallback();
                     }
                 );
