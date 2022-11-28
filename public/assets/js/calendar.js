@@ -1,13 +1,8 @@
-$(function () {
-    var parametreFilter = "x";
+document.addEventListener('DOMContentLoaded', function () {
 
-    $("#calendar").fullCalendar({
-        lang: 'fr',
-        header: {
-            left: "prev, next",
-            center: "title",
-            right: "month, agendaWeek, agendaDay"
-        },
+    let calendarEl = document.getElementById('calendar');
+    let calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
         eventSources: [
             {
                 url: fc_event_url,
@@ -16,27 +11,30 @@ $(function () {
                     filters: JSON.stringify({})
                 },
                 failure: () => {
-                    // alert("There was an error while fetching FullCalendar!");
+                    alert("There was an error while fetching FullCalendar!");
                 },
             },
-            // your event source
-            function (start, end, timezone, callback) {
+            function (info, successCallback, failureCallback) {
+                let events = [];
                 fetch("https://calendrier.api.gouv.fr/jours-feries/metropole.json")
                     .then((response) => response.json())
-                    .then(function (data) {
-                        let holidays = [];
-
+                    .then((data) => {
                         for (const day in data) {
-                            // console.log(`${day}: ${data[day]}`);
-                            holidays.push({
+                            events.push({
                                 title: data[day],
                                 start: day,
-                                allDay: true
+                                color: "#4B9CA1",
+                                textColor: "white",
                             });
                         }
-                        callback(holidays);
-                    });
+                        successCallback(events);
+                    }).catch((error) => {
+                        console.error(error);
+                        failureCallback();
+                    }
+                );
             }
-        ],
+        ]
     });
+    calendar.render();
 });
