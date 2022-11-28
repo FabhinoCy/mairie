@@ -1,0 +1,31 @@
+html{
+  body{
+    font-family: "Poppins",sans-serif;
+    nav{
+      background-color: $bleu-fonce;
+      padding: 0 5%!important;
+      margin: 0 0 50px 0;
+      li{
+        margin: 0 18px;
+        &.nav-item.active{
+          a{
+            color:$bleu;
+          }
+        }
+        &:hover{
+          background-color: $bleu-clair;
+          border-radius:10px;
+          font-weight:bold;
+        }
+        a{
+          &.nav-link{
+            color:$blanc;
+            &:hover{
+              color:$bleu;
+            }
+          }
+        }
+      }
+    }
+  }
+}
