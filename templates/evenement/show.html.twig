@@ -12,15 +12,21 @@
                 <td>{{ evenement.id }}</td>
             </tr>
             <tr>
-                <th>Title</th>
+                <th>Titre</th>
                 <td>{{ evenement.title }}</td>
             </tr>
+            {% if evenement.imageName != '' %}
+                <th>Image</th>
+                <td>
+                    <img src="{{ asset('images/evenements/' ~ evenement.imageName) }}"/>
+                </td>
+            {% endif %}
             <tr>
-                <th>BeginAt</th>
+                <th>Date du début</th>
                 <td>{{ evenement.beginAt ? evenement.beginAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>EndAt</th>
+                <th>Date de fin</th>
                 <td>{{ evenement.endAt ? evenement.endAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>

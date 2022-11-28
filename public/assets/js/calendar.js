@@ -34,6 +34,7 @@ $(function () {
                                 allDay: true
                             });
                         }
+                        console.log(holidays)
                         callback(holidays);
                     });
             }
