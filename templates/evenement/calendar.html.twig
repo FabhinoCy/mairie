@@ -2,24 +2,6 @@
 
 {% block body %}
 
-    <header>
-        <div class="nav">
-            <div class="logo">
-                <img src="{{ asset('images/logo.png') }}" alt="logo">
-            </div>
-            <div class="link">
-                <a>Accueil</a>
-                <a>Calendrier</a>
-                <a>Blog</a>
-                <a>Contact</a>
-            </div>
-            <div class="membre">
-                <a href="{{ path('app_login') }}">Connexion</a>
-                <a href="{{ path('app_register') }}">Inscription</a>
-            </div>
-        </div>
-    </header>
-
     <a href="{{ path('app_evenement_new') }}">Créer un évènement</a>
 
     <div id="calendar"></div>
