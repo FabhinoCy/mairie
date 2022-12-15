@@ -1,6 +1,39 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Accueil | Mairie Rosières-près-Troyes{% endblock %}
+
 {% block body %}
+
+    <header>
+        <div id="hautDePage">
+            <div id="logo">
+                <a href="{{ path('app_evenement_calendar') }}">
+                    <img src="{{ asset('images/logo.png') }}">
+                </a>
+            </div>
+            <div class="navigation">
+                <a class="active" href="{{ path('app_evenement_calendar') }}">Accueil</a>
+                <a>Calendrier</a>
+                <a>Blog</a>
+                <a>Contact</a>
+            </div>
+            <div id="espaceMembre">
+                <a href="{{ path('app_login') }}" class="connexion">Connexion</a>
+                <a href="{{ path('app_register') }}" class="inscription">Inscription</a>
+            </div>
+        </div>
+        <div id="title">
+            <p>Calendrier connecté de</p>
+            <span>Rosières-près-Troyes</span>
+            <p class="description">Phasellus quis laoreet purus, id ultrices augue. Suspendisse luctus malesuada venenatis. Etiam feugiat nisi ac ex dapibus, at tristique turpis commodo.</p>
+        </div>
+    </header>
+
+    <p class="texte">La ville de Rosières-Près-Troyes est fière de vous présenter son tout nouvel outil mis à dispotion
+        de ses habitants : le calendrier connecté. Grâce à cet outil, la mairie vous proposera divers événements afin de
+        vous tenir au courant de ce qui se prépare dans votre commune. Découvrez également la possibilité de créer vos
+        propres événements et planifiez vos journées grâce au calendrier connecté de la ville de Rosières-Près-Troyes !
+    </p>
 
     <a href="{{ path('app_evenement_new') }}">Créer un évènement</a>
 
