@@ -35,7 +35,29 @@
         propres événements et planifiez vos journées grâce au calendrier connecté de la ville de Rosières-Près-Troyes !
     </p>
 
-    <a href="{{ path('app_evenement_new') }}">Créer un évènement</a>
+    <div id="avantages">
+        <p class="titre">Mauris metus nulla, dignissim et massa eg</p>
+        <p class="description">Aecenas in mollis turpis. Aenean aliquam consectetur consequat.</p>
+        <section>
+            <div class="bloc">
+                <img src="{{ asset('images/calendrier.png') }}">
+                <p class="titre">Calendrier en ligne</p>
+                <p class="description">Etiam consectetur, quam cursus suscipit convallis, enim odio.</p>
+            </div>
+            <div class="bloc">
+                <img src="{{ asset('images/blog.png') }}">
+                <p class="titre">Blog en ligne</p>
+                <p class="description">Etiam consectetur, quam cursus suscipit convallis, enim odio.</p>
+            </div>
+            <div class="bloc">
+                <img src="{{ asset('images/crayon.png') }}">
+                <p class="titre">Rédiger vos évènements</p>
+                <p class="description">Etiam consectetur, quam cursus suscipit convallis, enim odio.</p>
+            </div>
+        </section>
+    </div>
+
+    {# <a class="createEvent" href="{{ path('app_evenement_new') }}">Créer un évènement</a> #}
 
     <div id="calendar"></div>
 {% endblock %}
