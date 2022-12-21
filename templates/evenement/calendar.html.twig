@@ -57,9 +57,16 @@
         </section>
     </div>
 
+    {{ dump(events) }}
+
+    {% for event in events %}
+        <p>{{ event.public }}</p>
+    {% endfor %}
+
     {# <a class="createEvent" href="{{ path('app_evenement_new') }}">Créer un évènement</a> #}
 
     <div id="calendar"></div>
+
 {% endblock %}
 
 {% block stylesheets %}
