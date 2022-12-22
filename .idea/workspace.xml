@@ -3,11 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5dd2e7b5-90e8-45d9-bb75-4f523c3ca842" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/RegistrationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/RegistrationController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/styles/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/EventSubscriber/CalendarSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventSubscriber/CalendarSubscriber.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/calendrier.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/calendrier.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/evenement/calendar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/evenement/calendar.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,6 +210,7 @@
       <workItem from="1671647437555" duration="29000" />
       <workItem from="1671652094371" duration="403000" />
       <workItem from="1671652518352" duration="2545000" />
+      <workItem from="1671738614875" duration="4204000" />
     </task>
     <servers />
   </component>

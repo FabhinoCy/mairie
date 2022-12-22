@@ -21,6 +21,19 @@
                 <a href="{{ path('app_login') }}" class="connexion">Connexion</a>
                 <a href="{{ path('app_register') }}" class="inscription">Inscription</a>
             </div>
+            <div id="menu-burger">
+                <img src="{{ asset('images/burger.png') }}">
+            </div>
+        </div>
+        <div id="menu-mobile">
+            <div class="menu">
+                <a class="active" href="{{ path('app_evenement_calendar') }}">Accueil</a>
+                <a href="{{ path('app_calendrier') }}">Calendrier</a>
+                <a>Blog</a>
+                <a>Contact</a>
+                <a href="{{ path('app_login') }}" class="connexion">Connexion</a>
+                <a href="{{ path('app_register') }}" class="inscription">Inscription</a>
+            </div>
         </div>
         <div id="title">
             <p>Calendrier connecté de</p>
@@ -57,12 +70,6 @@
         </section>
     </div>
 
-    {{ dump(events) }}
-
-    {% for event in events %}
-        <p>{{ event.public }}</p>
-    {% endfor %}
-
     {# <a class="createEvent" href="{{ path('app_evenement_new') }}">Créer un évènement</a> #}
 
     <div id="calendar"></div>
@@ -77,10 +84,19 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
 
     <script>
         fc_event_url = '{{ path('fc_load_events') }}';
     </script>
     <script src="{{ asset('assets/js/calendar.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#menu-burger').click(function() {
+                $('#menu-mobile').toggle('active');
+                $('body').toggleClass('no-scroll');
+            });
+        });
+    </script>
 {% endblock %}
