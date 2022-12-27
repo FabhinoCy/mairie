@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Evenement;
 use App\Form\EvenementType;
+use App\Form\ImportFormType;
 use App\Repository\EvenementRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use League\Csv\Reader;
 
 #[Route('/evenement')]
 class EvenementController extends AbstractController
@@ -40,6 +42,45 @@ class EvenementController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    #[Route('/import', name: 'app_evenement_import', methods: ['GET', 'POST'])]
+    public function import(Request $request, EvenementRepository $evenementRepository): Response
+    {
+        $form = $this->createForm(ImportFormType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $csvFile = $form->get('csvFile')->getData();
+
+            if ($csvFile->getMimeType() == 'text/csv' || $csvFile->getMimeType() == 'application/vnd.ms-excel' || $csvFile->getMimeType() ==  'text/plain' || $csvFile->getMimeType() == 'text/tsv') {
+                $csv = Reader::createFromPath($csvFile->getRealPath());
+                $csv->setHeaderOffset(0);
+                $records = $csv->getRecords();
+                foreach ($csv as $record) {
+                    $evenement = new Evenement();
+                    $evenement->setTitle($record['title']);
+                    $evenement->setBeginAt(new \DateTimeImmutable($record['begin_at']));
+                    $evenement->setEndAt(new \DateTimeImmutable($record['end_at']));
+                    $evenement->setUpdatedAt(new \DateTimeImmutable('now'));
+                    $evenement->setPublic(1);
+                    $evenement->setUser(null);
+                    $evenement->setBackgroundcolor($record['backgroundcolor']);
+                    $evenement->setBordercolor($record['bordercolor']);
+                    $evenement->setTextcolor($record['textcolor']);
+
+                    $evenementRepository->save($evenement, true);
+                }
+            } else {
+                $this->addFlash('danger', 'Le fichier n\'est pas au format CSV');
+            }
+        }
+
+        return $this->renderForm('evenement/new.html.twig', [
+            'form' => $form,
+        ]);
+    }
+
 
     #[Route('/{id}', name: 'app_evenement_show', methods: ['GET'])]
     public function show(Evenement $evenement): Response
