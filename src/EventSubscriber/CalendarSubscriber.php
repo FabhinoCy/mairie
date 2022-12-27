@@ -8,6 +8,7 @@ use CalendarBundle\Entity\Event;
 use CalendarBundle\Event\CalendarEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class CalendarSubscriber implements EventSubscriberInterface
 {
@@ -16,10 +17,12 @@ class CalendarSubscriber implements EventSubscriberInterface
 
     public function __construct(
         EvenementRepository $evenementRepository,
-        UrlGeneratorInterface $router
+        UrlGeneratorInterface $router,
+        TokenStorageInterface $tokenStorage
     ) {
         $this->evenementRepository = $evenementRepository;
         $this->router = $router;
+        $this->tokenStorage = $tokenStorage;
     }
 
     public static function getSubscribedEvents()
@@ -34,22 +37,35 @@ class CalendarSubscriber implements EventSubscriberInterface
         $start = $calendar->getStart();
         $end = $calendar->getEnd();
         $filters = $calendar->getFilters();
-
-        // Modify the query to fit to your entity and needs
-        // Change evenement.beginAt by your start date property
         $evenements = $this->evenementRepository
             ->createQueryBuilder('evenement')
-            // ->where('evenement.public === true')
             ->where('evenement.beginAt BETWEEN :start and :end OR evenement.endAt BETWEEN :start and :end')
+            ->andWhere('evenement.public = 1')
             ->setParameter('start', $start->format('Y-m-d H:i:s'))
             ->setParameter('end', $end->format('Y-m-d H:i:s'))
             ->getQuery()
             ->getResult()
         ;
 
+        $user = $this->tokenStorage->getToken()->getUser();
+
+        $evenementsPrivate = $this->evenementRepository
+            ->createQueryBuilder('evenement')
+            ->where('evenement.beginAt BETWEEN :start and :end OR evenement.endAt BETWEEN :start and :end')
+            ->andWhere('evenement.public = 0')
+            ->andWhere('evenement.user = :user')
+            ->setParameter('start', $start->format('Y-m-d H:i:s'))
+            ->setParameter('end', $end->format('Y-m-d H:i:s'))
+            ->setParameter('user', $user)
+            ->getQuery()
+            ->getResult()
+        ;
+
+        $evenements = array_merge($evenements, $evenementsPrivate);
+
+
         foreach ($evenements as $evenement) {
 
-            //dd($evenement);
             // this create the events with your data (here evenement data) to fill calendar
             $evenementEvent = new Event(
                 $evenement->getTitle(),
