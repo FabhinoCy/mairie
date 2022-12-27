@@ -39,23 +39,13 @@ class CalendarSubscriber implements EventSubscriberInterface
         // Change evenement.beginAt by your start date property
         $evenements = $this->evenementRepository
             ->createQueryBuilder('evenement')
+            // ->where('evenement.public === true')
             ->where('evenement.beginAt BETWEEN :start and :end OR evenement.endAt BETWEEN :start and :end')
             ->setParameter('start', $start->format('Y-m-d H:i:s'))
             ->setParameter('end', $end->format('Y-m-d H:i:s'))
             ->getQuery()
             ->getResult()
         ;
-
-        /*$jours = json_decode(file_get_contents('https://calendrier.api.gouv.fr/jours-feries/metropole.json'), true);
-        //dd(array_keys($jours));
-        foreach ($jours as $jour) {
-            $evenementEvent = new Event(
-                //$jour->getTitle(),
-                //$jour->getBeginAt(),
-                //$jour->getEndAt() // If the end date is null or not defined, a all day event is created.
-            dd($jour)
-            );
-        }*/
 
         foreach ($evenements as $evenement) {
 
