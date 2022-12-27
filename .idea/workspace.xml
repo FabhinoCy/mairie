@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5dd2e7b5-90e8-45d9-bb75-4f523c3ca842" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/mairie.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mairie.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EventSubscriber/CalendarSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventSubscriber/CalendarSubscriber.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/calendrier.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/calendrier.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/evenement/calendar.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/evenement/calendar.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/twig.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Security/AppCustomAuthenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Security/AppCustomAuthenticator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,6 +170,7 @@
       <path value="$PROJECT_DIR$/vendor/twbs/bootstrap" />
       <path value="$PROJECT_DIR$/vendor/jms/metadata" />
       <path value="$PROJECT_DIR$/vendor/vich/uploader-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfonycasts/reset-password-bundle" />
     </include_path>
   </component>
   <component name="ProjectId" id="2HDNomYymQMIMVc1TDQyIyP480Q" />
@@ -201,16 +208,7 @@
       <workItem from="1667846841499" duration="4516000" />
       <workItem from="1669639790000" duration="1708000" />
       <workItem from="1669646266821" duration="3614000" />
-      <workItem from="1670867472725" duration="1176000" />
-      <workItem from="1670915325748" duration="17000" />
-      <workItem from="1670923559084" duration="444000" />
-      <workItem from="1671174261513" duration="197000" />
-      <workItem from="1671218597883" duration="2132000" />
-      <workItem from="1671563435557" duration="1744000" />
-      <workItem from="1671647437555" duration="29000" />
-      <workItem from="1671652094371" duration="403000" />
-      <workItem from="1671652518352" duration="2545000" />
-      <workItem from="1671738614875" duration="4204000" />
+      <workItem from="1669668472961" duration="14000" />
     </task>
     <servers />
   </component>
