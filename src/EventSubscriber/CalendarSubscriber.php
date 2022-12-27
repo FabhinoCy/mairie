@@ -47,21 +47,24 @@ class CalendarSubscriber implements EventSubscriberInterface
             ->getResult()
         ;
 
-        $user = $this->tokenStorage->getToken()->getUser();
+        $user = $this->tokenStorage->getToken();
+        // if user is connected
+        if ($user) {
+            $user = $user->getUser();
+            $evenementsPrivate = $this->evenementRepository
+                ->createQueryBuilder('evenement')
+                ->where('evenement.beginAt BETWEEN :start and :end OR evenement.endAt BETWEEN :start and :end')
+                ->andWhere('evenement.public = 0')
+                ->andWhere('evenement.user = :user')
+                ->setParameter('start', $start->format('Y-m-d H:i:s'))
+                ->setParameter('end', $end->format('Y-m-d H:i:s'))
+                ->setParameter('user', $user)
+                ->getQuery()
+                ->getResult()
+            ;
+            $evenements = array_merge($evenements, $evenementsPrivate);
+        }
 
-        $evenementsPrivate = $this->evenementRepository
-            ->createQueryBuilder('evenement')
-            ->where('evenement.beginAt BETWEEN :start and :end OR evenement.endAt BETWEEN :start and :end')
-            ->andWhere('evenement.public = 0')
-            ->andWhere('evenement.user = :user')
-            ->setParameter('start', $start->format('Y-m-d H:i:s'))
-            ->setParameter('end', $end->format('Y-m-d H:i:s'))
-            ->setParameter('user', $user)
-            ->getQuery()
-            ->getResult()
-        ;
-
-        $evenements = array_merge($evenements, $evenementsPrivate);
 
 
         foreach ($evenements as $evenement) {
