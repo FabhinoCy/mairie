@@ -37,7 +37,7 @@ class Evenement
     #[Vich\UploadableField(mapping: 'evenements', fileNameProperty: 'imageName')]
     private ?File $imageFile = null;
 
-    #[ORM\Column(type: 'string')]
+    #[ORM\Column(type: 'string', nullable: true)]
     private ?string $imageName = null;
 
     #[ORM\ManyToOne(inversedBy: 'evenement')]
