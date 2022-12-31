@@ -1,17 +1,100 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription | Mairie Rosières-près-Troyes{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+    <section class="member-form">
+        <nav class="navbar bg-body-tertiary mb-5">
+            <div class="container-fluid">
+                <a class="navbar-brand mx-auto" href="{{ path('app_evenement_calendar') }}">
+                    <img class="h-25" src="{{ asset('images/logo.png') }}">
+                </a>
+            </div>
+        </nav>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+        <div class="container">
+            <div class="row vh-90 justify-content-center align-items-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header fw-bold fs-5">Inscription</div>
+                        <div class="card-body">
+                            {{ form_start(registrationForm) }}
+
+                            <div class="mb-3 form-floating">
+                                {{ form_widget(registrationForm.name, {
+                                    attr : {
+                                        'class': 'form-control',
+                                        'placeholder': 'Nom'
+                                    }
+                                }) }}
+                                {{ form_label(registrationForm.name, null, {
+                                    label_attr : {
+                                        'class': 'form-label'
+                                    }
+                                }) }}
+                            </div>
+
+                            <div class="mb-3 form-floating">
+                                {{ form_widget(registrationForm.email, {
+                                    attr : {
+                                        'class': 'form-control',
+                                        'placeholder': 'Email'
+                                    }
+                                }) }}
+                                {{ form_label(registrationForm.email, null, {
+                                    label_attr : {
+                                        'class': 'form-label'
+                                    }
+                                }) }}
+                            </div>
+
+                            <div class="mb-3 form-floating">
+                                {{ form_widget(registrationForm.plainPassword, {
+                                    attr : {
+                                        'class': 'form-control',
+                                        'placeholder': 'Mot de passe',
+                                        'autocomplete': 'new-password',
+                                    }
+                                }) }}
+                                {{ form_label(registrationForm.plainPassword, null, {
+                                    label : 'Mot de passe',
+                                    label_attr : {
+                                        'class': 'form-label',
+                                    }
+                                }) }}
+                            </div>
+
+                            <div class="form-check mb-3">
+                                {{ form_widget(registrationForm.agreeTerms, {
+                                    attr: {
+                                        'class': 'form-check-input mb-3 fs-6'
+                                    }
+                                }) }}
+
+                                {{ form_label(registrationForm.agreeTerms, null, {
+                                    label: 'J\'accepte les conditions d\'utilisation',
+                                    label_attr: {
+                                        'class': 'form-check-label fs-6'
+                                    }
+                                }) }}
+
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100 fw-bold">S'inscrire</button>
+
+                            <p class="form-text link mt-3 mb-0">Vous êtes déjà inscrits ? <a href="{{ path('app_login') }}">Connectez vous</a></p>
+                            {{ form_end(registrationForm) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('css/member') }}
 {% endblock %}
