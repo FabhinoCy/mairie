@@ -1,39 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Evenement index{% endblock %}
+{% block title %}Blog | Mairie Rosières-près-Troyes{% endblock %}
 
 {% block body %}
-    <h1>Evenement index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>BeginAt</th>
-                <th>EndAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <header class="bg-img">
+        {{ include('_nav.html.twig') }}
+        <div id="title">
+            <p>Liste des évènements à</p>
+            <span>Rosières-près-Troyes</span>
+            <p class="description">Phasellus quis laoreet purus, id ultrices augue. Suspendisse luctus malesuada venenatis. Etiam feugiat nisi ac ex dapibus, at tristique turpis commodo.</p>
+        </div>
+    </header>
+
+    <section class="blog">
+
         {% for evenement in evenements %}
-            <tr>
-                <td>{{ evenement.id }}</td>
-                <td>{{ evenement.title }}</td>
-                <td>{{ evenement.beginAt ? evenement.beginAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ evenement.endAt ? evenement.endAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_evenement_show', {'id': evenement.id}) }}">show</a>
-                    <a href="{{ path('app_evenement_edit', {'id': evenement.id}) }}">edit</a>
-                </td>
-            </tr>
+            <a href="{{ path('app_evenement_show', {'id': evenement.id}) }}" class="card">
+                <img src="{{ evenement.imageName ? asset('images/evenements/' ~ evenement.imageName) : asset('images/evenements/default.png') }}" alt="Image de l'évènement {{ evenement.title }}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{ evenement.title }}</h5>
+                    <p class="card-text card-date">Le {{ evenement.beginAt|format_datetime('full', 'none', locale='fr', timezone='Europe/Paris')|capitalize }}</p>
+                    <p class="card-text">{{ evenement.description ? evenement.description|slice(0, 100) ~ '...' : 'Aucune description disponible' }}</p>
+                </div>
+            </a>
         {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
+            <h4 class="alert alert-warning text-center">Aucun évènement trouvé</h4>
         {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_evenement_new') }}">Create new</a>
+    </section>
 {% endblock %}

@@ -33,6 +33,7 @@ class EvenementController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $evenement->setUser($this->getUser());
             $evenement->setBeginAt($evenement->getBeginAt()->setTimezone(new \DateTimeZone('Europe/Paris')));
+            $evenement->setUpdatedAt($evenement->getBeginAt()->setTimezone(new \DateTimeZone('Europe/Paris')));
             $evenement->setEndAt($evenement->getEndAt()->setTimezone(new \DateTimeZone('Europe/Paris')));
             $evenementRepository->save($evenement, true);
 
@@ -62,9 +63,10 @@ class EvenementController extends AbstractController
                 foreach ($csv as $record) {
                     $evenement = new Evenement();
                     $evenement->setTitle($record['title']);
-                    $evenement->setBeginAt(new \DateTimeImmutable($record['begin_at']));
-                    $evenement->setEndAt(new \DateTimeImmutable($record['end_at']));
-                    $evenement->setUpdatedAt(new \DateTimeImmutable('now'));
+                    $evenement->setDescription($record['description']);
+                    $evenement->setBeginAt(new \DateTime($record['begin_at']));
+                    $evenement->setEndAt(new \DateTime($record['end_at']));
+                    $evenement->setUpdatedAt(new \DateTime('now'));
                     $evenement->setPublic(1);
                     $evenement->setUser(null);
                     $evenement->setBackgroundcolor($record['backgroundcolor']);
@@ -72,6 +74,8 @@ class EvenementController extends AbstractController
                     $evenement->setTextcolor($record['textcolor']);
 
                     $evenementRepository->save($evenement, true);
+
+                    return $this->redirectToRoute('app_evenement_index', [], Response::HTTP_SEE_OTHER);
                 }
             } else {
                 $this->addFlash('danger', 'Le fichier n\'est pas au format CSV');

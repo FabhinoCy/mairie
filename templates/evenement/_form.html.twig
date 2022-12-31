@@ -5,11 +5,15 @@
     {{ form_label(form.title, 'Titre de l\'évènement', { 'label_attr' : {'class': 'form-label'}}) }}
 </div>
 
-<div class="mb-3">
+<div class="mb-2">
     {{ form_label(form.imageFile, 'Image de l\'évènement', {'label_attr': {'class': 'form-label'}}) }}
     {{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
 </div>
 
+<div class="mb-3">
+    {{ form_label(form.description, null, { 'label_attr' : {'class': 'form-label'}}) }}
+    {{ form_widget(form.description, { 'attr' : {'class': 'form-control'} }) }}
+</div>
 
 <div class="mb-3">
     {{ form_label(form.backgroundcolor, 'Couleur d\'arrière plan dans le calendrier', {'label_attr': {'class': 'form-label'}}) }}

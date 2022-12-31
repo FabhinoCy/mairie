@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,6 +23,13 @@ class EvenementType extends AbstractType
             ->add('imageFile', FileType::class, [
                 'required' => false,
                 'label' => 'Image',
+            ])
+            ->add('description', TextareaType::class, [
+                'attr' => [
+                    'class' => 'tinymce',
+                    'data-theme' => 'advanced',
+                ],
+                'label' => 'Description de l\'événement',
             ])
             ->add('backgroundcolor', ColorType::class, [
                 'label' => 'Couleur de fond'
