@@ -18,8 +18,10 @@ class EvenementController extends AbstractController
     #[Route('/', name: 'app_evenement_index', methods: ['GET'])]
     public function index(EvenementRepository $evenementRepository): Response
     {
+        $evenements = $evenementRepository->findBy([], ['beginAt' => 'DESC']);
+
         return $this->render('evenement/index.html.twig', [
-            'evenements' => $evenementRepository->findAll(),
+            'evenements' => $evenements
         ]);
     }
 
@@ -103,9 +105,14 @@ class EvenementController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $evenementRepository->save($evenement, true);
+            if ($evenement->getUser() == $this->getUser()) {
+                $evenement->setUpdatedAt(new \DateTime('now'));
+                $evenementRepository->save($evenement, true);
 
-            return $this->redirectToRoute('app_evenement_index', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_evenement_index', [], Response::HTTP_SEE_OTHER);
+            } else {
+                $this->addFlash('danger', 'Vous n\'êtes pas le propriétaire de cet événement');
+            }
         }
 
         return $this->renderForm('evenement/edit.html.twig', [

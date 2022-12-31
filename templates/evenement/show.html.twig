@@ -1,40 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Evenement{% endblock %}
+{% block title %}{{ evenement.title }} | Mairie Rosières-près-Troyes{% endblock %}
 
 {% block body %}
-    <h1>Evenement</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ evenement.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ evenement.title }}</td>
-            </tr>
-            {% if evenement.imageName != '' %}
-                <th>Image</th>
-                <td>
-                    <img src="{{ asset('images/evenements/' ~ evenement.imageName) }}"/>
-                </td>
-            {% endif %}
-            <tr>
-                <th>Date du début</th>
-                <td>{{ evenement.beginAt ? evenement.beginAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Date de fin</th>
-                <td>{{ evenement.endAt ? evenement.endAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <header class="bg-img" style="background-image: url('{{ evenement.imageName ? '/images/evenements/' ~ evenement.imageName : '/images/evenements/default.png' }}'); background-size: cover; backdrop-filter: brightness(0.8)">
+        {{ include('_nav.html.twig') }}
+        <div id="title">
+        </div>
+    </header>
 
-    <a href="{{ path('app_evenement_index') }}">back to list</a>
+    <section class="blog-page">
 
-    <a href="{{ path('app_evenement_edit', {'id': evenement.id}) }}">edit</a>
+        <div class="blog-header">
+            <img src="{{ evenement.imageName ? asset('images/evenements/' ~ evenement.imageName) : asset('images/evenements/default.png') }}" alt="Image de l'évènement {{ evenement.title }}">
+            <div class="card-body">
+                <h1 class="card-title">{{ evenement.title }}</h1>
+                <p class="card-text card-date">Le {{ evenement.beginAt|format_datetime('full', 'none', locale='fr', timezone='Europe/Paris')|capitalize }}</p>
+                {% if evenement.user %}
+                    <span class="card-text card-author">Par {{ evenement.user.name }}</span>
+                {% endif %}
 
-    {{ include('evenement/_delete_form.html.twig') }}
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') and evenement.user == app.user %}
+                    <div class="card-btns mt-4">
+                        <a href="{{ path('app_evenement_edit', {id: evenement.id}) }}" class="btn-edit">Modifier l'évènement</a>
+                        {{ include('evenement/_delete_form.html.twig', {'id': evenement.id}) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <p class="card-description">
+            {{ evenement.description ? evenement.description : 'Aucune description disponible' }}
+        </p>
+
+
+
+    </section>
 {% endblock %}
