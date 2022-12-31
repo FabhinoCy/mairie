@@ -32,6 +32,8 @@ class EvenementController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $evenement->setUser($this->getUser());
+            $evenement->setBeginAt($evenement->getBeginAt()->setTimezone(new \DateTimeZone('Europe/Paris')));
+            $evenement->setEndAt($evenement->getEndAt()->setTimezone(new \DateTimeZone('Europe/Paris')));
             $evenementRepository->save($evenement, true);
 
             return $this->redirectToRoute('app_evenement_index', [], Response::HTTP_SEE_OTHER);
@@ -76,7 +78,7 @@ class EvenementController extends AbstractController
             }
         }
 
-        return $this->renderForm('evenement/new.html.twig', [
+        return $this->renderForm('evenement/import.html.twig', [
             'form' => $form,
         ]);
     }

@@ -1,12 +1,61 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Reset your password{% endblock %}
+{% block title %}Réinitialisez votre mot de passe | Mairie Rosières-près-Troyes{% endblock %}
 
 {% block body %}
-    <h1>Reset your password</h1>
+    {% for flash_error in app.flashes('reset_password_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
 
-    {{ form_start(resetForm) }}
-        {{ form_row(resetForm.plainPassword) }}
-        <button class="btn btn-primary">Reset password</button>
-    {{ form_end(resetForm) }}
+    <section class="member-form">
+        <nav class="navbar bg-body-tertiary mb-5">
+            <div class="container-fluid">
+                <a class="navbar-brand mx-auto" href="{{ path('app_evenement_calendar') }}">
+                    <img class="h-25" src="{{ asset('images/logo.png') }}" alt="Logo de la mairie de Rosières-près-Troyes">
+                </a>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row vh-90 justify-content-center align-items-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header fw-bold fs-5">Réinitialisez votre mot de passe</div>
+                        <div class="card-body">
+                            {{ form_start(resetForm) }}
+
+                            <div class="mb-1 form-floating">
+                                {{ form_widget(resetForm.plainPassword, {
+                                    attr : {
+                                        'class': 'form-control',
+                                        'placeholder': 'Mot de passe'
+                                        'autocomplete': 'new-password'
+                                    }
+                                }) }}
+                                {{ form_label(resetForm.plainPassword, null, {
+                                    label_attr : {
+                                        'class': 'form-label'
+                                    },
+                                    label: 'Nouveau mot de passe'
+                                }) }}
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100 fw-bold">Réinitialiser</button>
+
+                            <p class="form-text link mt-3 mb-0">Retour à la page de <a href="{{ path('app_login') }}">connexion</a></p>
+                            {{ form_end(resetForm) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('css/member') }}
 {% endblock %}

@@ -28,6 +28,7 @@ body {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+
       #logo {
         width: 150px;
         height: 100%;
@@ -43,6 +44,7 @@ body {
           object-fit: contain;
         }
       }
+
       .navigation {
         height: 100%;
         width: auto;
@@ -51,6 +53,7 @@ body {
         justify-content: space-between;
         align-items: center;
         gap: 50px;
+
         a {
           font-family: 'Poppins', sans-serif;
           font-style: normal;
@@ -66,12 +69,14 @@ body {
             color: darken(#FFFFFF, 10%);
           }
         }
+
         a.active {
           color: #3FC1C9;
           text-decoration: none;
           font-weight: 700;
         }
       }
+
       #espaceMembre {
         height: 100%;
         width: auto;
@@ -79,6 +84,7 @@ body {
         display: flex;
         justify-content: space-between;
         align-items: center;
+
         .connexion {
           font-family: 'Poppins', sans-serif;
           font-style: normal;
@@ -88,6 +94,7 @@ body {
           color: #FFFFFF;
           text-decoration: none;
         }
+
         .inscription {
           display: flex;
           justify-content: center;
@@ -103,23 +110,17 @@ body {
           color: #3FC1C9;
           text-decoration: none;
         }
-        .pseudo {
-            font-family: 'Poppins', sans-serif;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 18px;
-            text-align: center;
-            color: #FFFFFF;
-            text-decoration: none;
-        }
       }
+
       #menu-burger {
         height: 100%;
         width: 40px;
         display: none;
         cursor: pointer;
+
         a {
           color: white;
+
           &:hover, &:focus {
             color: #3FC1C9;
           }
@@ -131,6 +132,17 @@ body {
         }
       }
     }
+
+    .pseudo {
+      font-family: 'Poppins', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      text-align: center;
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+
     #menu-mobile {
       display: none;
       justify-content: center;
@@ -144,6 +156,7 @@ body {
       z-index: 1000;
       transition: all ease-in-out 0.15s;
       opacity: 0;
+
       #close-menu {
         position: absolute;
         color: black;
@@ -157,6 +170,7 @@ body {
           width: 35px;
         }
       }
+
       .menu {
         position: relative;
         margin: auto 0;
@@ -166,7 +180,8 @@ body {
         flex-direction: column;
         justify-content: space-between;
         gap: 10px;
-        a {
+
+        a, span {
           font-family: 'Poppins', sans-serif;
           font-style: normal;
           font-weight: 500;
@@ -175,25 +190,31 @@ body {
           color: black;
           text-decoration: none;
         }
+
         a.active {
           color: #3FC1C9;
           text-decoration: none;
         }
       }
     }
+
     #menu-mobile.active {
       display: flex;
     }
+
     @media (max-width: 1050px) {
       #hautDePage {
         width: 100%;
         padding: 0 20px;
+
         .navigation {
           display: none;
         }
+
         #espaceMembre {
           display: none;
         }
+
         #menu-burger {
           display: flex;
           justify-content: center;
@@ -210,9 +231,11 @@ body {
       font-size: 48px;
       text-align: center;
       color: #FFFFFF;
+
       span {
         color: #FC5185;
       }
+
       .description {
         font-family: 'Poppins', sans-serif;
         font-style: normal;
@@ -225,9 +248,11 @@ body {
         margin-right: auto;
       }
     }
+
     @media (max-width: 650px) {
       #title {
         font-size: 30px;
+
         .description {
           font-size: 15px;
         }
@@ -246,15 +271,17 @@ body {
     color: #929292;
     text-align: center;
   }
+
   @media (max-width: 650px) {
     .texte {
-        font-size: 13px;
+      font-size: 13px;
     }
   }
 
   #avantages {
     display: flex;
     flex-direction: column;
+
     .titre {
       font-family: 'Poppins', sans-serif;
       font-style: normal;
@@ -264,6 +291,7 @@ body {
       color: #000000;
       margin-top: 25px;
     }
+
     .description {
       font-family: 'Poppins', sans-serif;
       font-style: normal;
@@ -271,6 +299,7 @@ body {
       font-size: 19px;
       text-align: center;
     }
+
     section {
       margin: 50px auto;
       width: 90%;
@@ -279,12 +308,14 @@ body {
       flex-direction: row;
       justify-content: space-around;
       flex-wrap: wrap;
+
       .bloc {
         width: 360px;
         height: 220px;
         display: flex;
         flex-direction: column;
         align-items: center;
+
         .titre {
           font-family: 'Poppins', sans-serif;
           font-style: normal;
@@ -293,6 +324,7 @@ body {
           text-align: center;
           color: #000000;
         }
+
         .description {
           font-family: 'Poppins', sans-serif;
           font-style: normal;
@@ -304,22 +336,55 @@ body {
       }
     }
   }
+
   @media (max-width: 650px) {
     #avantages {
       .titre {
         font-size: 18px;
       }
+
       .description {
         font-size: 13px;
       }
     }
   }
+
   #calendar {
-    margin: 80px auto;
+    margin: 20px auto 80px auto;
     width: 90%;
   }
 }
 
 body.no-scroll {
   overflow: hidden;
+}
+
+.calendrier-btn {
+
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin: 20px auto;
+  width: 90%;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    padding: 10px;
+    background: #E2FDFF;
+    border-radius: 10px;
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+    color: #3FC1C9;
+    text-decoration: none;
+
+    &:hover {
+      color: darken(#3FC1C9, 10%);
+    }
+  }
+
 }

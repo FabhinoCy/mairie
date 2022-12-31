@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Importer des évènements | Mairie Rosières-près-Troyes{% endblock %}
+
+{% block body %}
+
+    <section class="member-form">
+        <nav class="navbar bg-body-tertiary mb-5">
+            <div class="container-fluid">
+                <a class="navbar-brand mx-auto" href="{{ path('app_evenement_calendar') }}">
+                    <img class="h-25" src="{{ asset('images/logo.png') }}" alt="Logo de la mairie de Rosières-près-Troyes">
+                </a>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row vh-90 justify-content-center align-items-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header fw-bold fs-5">Importer des évènements</div>
+                        <div class="card-body">
+                            {{ form_start(form) }}
+
+                            <div class="mb-2">
+                                {{ form_label(form.csvFile, 'Fichier CSV', {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(form.csvFile, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+
+                            <div class="mb-3">
+                                <small class="text-muted">Le fichier doit être au format CSV et sous la forme suivante :<br>
+                                    <img class="img-fluid rounded" style="object-fit: contain; height: auto !important;" src="{{ asset('images/csv.png') }}" alt="Exemple de fichier CSV">
+                                </small>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100 fw-bold">Importer</button>
+
+                            <p class="form-text link mt-3 mb-0">Retour à la <a href="{{ path('app_evenement_index') }}">liste des évènements</a></p>
+
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('css/member') }}
+{% endblock %}

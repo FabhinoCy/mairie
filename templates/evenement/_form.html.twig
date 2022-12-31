@@ -1,4 +1,49 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+<div class="mb-3 form-floating">
+    {{ form_widget(form.title, { 'attr' : {'class': 'form-control', 'placeholder': 'Title'} }) }}
+    {{ form_label(form.title, 'Titre de l\'évènement', { 'label_attr' : {'class': 'form-label'}}) }}
+</div>
+
+<div class="mb-3">
+    {{ form_label(form.imageFile, 'Image de l\'évènement', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
+</div>
+
+
+<div class="mb-3">
+    {{ form_label(form.backgroundcolor, 'Couleur d\'arrière plan dans le calendrier', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.backgroundcolor, {'attr': {'class': 'form-control form-control-color'}}) }}
+</div>
+
+<div class="mb-3">
+    {{ form_label(form.bordercolor, 'Couleur de bordures dans le calendrier', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.bordercolor, {'attr': {'class': 'form-control form-control-color'}}) }}
+</div>
+
+<div class="mb-3">
+    {{ form_label(form.textcolor, 'Couleur du texte dans le calendrier', {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.textcolor, {'attr': {'class': 'form-control form-control-color'}}) }}
+</div>
+
+<div class="mb-3">
+    {{ form_label(form.beginAt, null, {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.beginAt, {'attr': {'class': 'form-control'}}) }}
+</div>
+
+<div class="mb-3">
+    {{ form_label(form.endAt, null, {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.endAt, {'attr': {'class': 'form-control'}}) }}
+</div>
+
+{# public #}
+<div class="mb-3">
+    {{ form_label(form.public, null, {'label_attr': {'class': 'form-label'}}) }}
+    {{ form_widget(form.public, {'attr': {'class': 'form-check-input'}}) }}
+</div>
+
+<button type="submit" class="btn btn-primary w-100 fw-bold">{{ button_label }}</button>
+
+<p class="form-text link mt-3 mb-0">Retour à la <a href="{{ path('app_evenement_index') }}">liste des évènements</a></p>
+
 {{ form_end(form) }}

@@ -1,13 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Evenement{% endblock %}
+{% block title %}Modifier un évènement | Mairie Rosières-près-Troyes{% endblock %}
 
 {% block body %}
-    <h1>Edit Evenement</h1>
 
-    {{ include('evenement/_form.html.twig', {'button_label': 'Update'}) }}
+    <section class="member-form">
+        <nav class="navbar bg-body-tertiary mb-5">
+            <div class="container-fluid">
+                <a class="navbar-brand mx-auto" href="{{ path('app_evenement_calendar') }}">
+                    <img class="h-25" src="{{ asset('images/logo.png') }}" alt="Logo de la mairie de Rosières-près-Troyes">
+                </a>
+            </div>
+        </nav>
 
-    <a href="{{ path('app_evenement_index') }}">back to list</a>
+        <div class="container">
+            <div class="row vh-90 justify-content-center align-items-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header fw-bold fs-5">Modifier un évènement</div>
+                        <div class="card-body">
+                            {{ include('evenement/_form.html.twig', {'button_label': 'Modifier'}) }}
+                            {{ include('evenement/_delete_form.html.twig') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    {{ include('evenement/_delete_form.html.twig') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('css/member') }}
 {% endblock %}

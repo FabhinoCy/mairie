@@ -1,16 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Calendrier en ligne | Mairie Rosières-près-Troyes{% endblock %}
+{% block title %}Calendrier complet | Mairie Rosières-près-Troyes{% endblock %}
 
 {% block body %}
 
-        <header>
+    <header>
+        {{ include('_nav.html.twig') }}
+    </header>
 
-    {{ include('_nav.html.twig') }}
-
-        </header>
-
-    {# <a class="createEvent" href="{{ path('app_evenement_new') }}">Créer un évènement</a> #}
+    <div class="calendrier-btn">
+        <a href="{{ path('app_evenement_index') }}">Liste des événements</a>
+        <a href="{{ path('app_evenement_new') }}">Créer un événement</a>
+        <a href="{{ path('app_evenement_import') }}">Importer des événement (CSV)</a>
+    </div>
 
     <div id="calendar"></div>
 {% endblock %}

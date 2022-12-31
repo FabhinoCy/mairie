@@ -20,10 +20,10 @@ class Evenement
     private ?string $title = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $beginAt = null;
+    private ?\DateTime $beginAt = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $endAt = null;
+    private ?\DateTime $endAt = null;
 
     #[ORM\Column(length: 255)]
     private ?string $backgroundcolor = null;
@@ -47,7 +47,7 @@ class Evenement
     private ?bool $public = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $updatedAt = null;
+    private ?\DateTime $updatedAt = null;
 
     public function getId(): ?int
     {
@@ -66,24 +66,24 @@ class Evenement
         return $this;
     }
 
-    public function getBeginAt(): ?\DateTimeImmutable
+    public function getBeginAt(): ?\DateTime
     {
         return $this->beginAt;
     }
 
-    public function setBeginAt(\DateTimeImmutable $beginAt): self
+    public function setBeginAt(\DateTime $beginAt): self
     {
         $this->beginAt = $beginAt;
 
         return $this;
     }
 
-    public function getEndAt(): ?\DateTimeImmutable
+    public function getEndAt(): ?\DateTime
     {
         return $this->endAt;
     }
 
-    public function setEndAt(\DateTimeImmutable $endAt): self
+    public function setEndAt(\DateTime $endAt): self
     {
         $this->endAt = $endAt;
 
@@ -133,7 +133,7 @@ class Evenement
         if (null !== $imageFile) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTimeImmutable();
+            $this->updatedAt = new \DateTime();
         }
     }
 
@@ -176,12 +176,12 @@ class Evenement
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    public function setUpdatedAt(\DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
