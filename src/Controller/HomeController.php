@@ -33,6 +33,6 @@ class HomeController extends AbstractController
     #[Route('/contact', name: 'app_contact')]
     public function contact(): Response
     {
-        return $this->render('calendrier.html.twig');
+        return $this->render('contact.html.twig');
     }
 }
