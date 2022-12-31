@@ -1,24 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil | Mairie Rosières-près-Troyes{% endblock %}
+{% block title %}Calendrier en ligne | Mairie Rosières-près-Troyes{% endblock %}
 
 {% block body %}
 
-    <div id="headerCalendrier">
-        <div class="logo">
-            <img src="{{ asset('images/logo.png') }}">
-        </div>
-        <div class="navigation">
-            <a href="{{ path('app_evenement_calendar') }}">Accueil</a>
-            <a class="active" href="{{ path('app_calendrier') }}">Calendrier</a>
-            <a>Blog</a>
-            <a>Contact</a>
-        </div>
-        <div class="nom">
-            <span>Fabien C.</span>
-        </div>
-    </div>
+        <header>
 
+    {{ include('_nav.html.twig') }}
+
+        </header>
 
     {# <a class="createEvent" href="{{ path('app_evenement_new') }}">Créer un évènement</a> #}
 

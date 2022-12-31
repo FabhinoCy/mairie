@@ -4,37 +4,8 @@
 
 {% block body %}
 
-    <header>
-        <div id="hautDePage">
-            <div id="logo">
-                <a href="{{ path('app_evenement_calendar') }}">
-                    <img src="{{ asset('images/logo.png') }}">
-                </a>
-            </div>
-            <div class="navigation">
-                <a class="active" href="{{ path('app_evenement_calendar') }}">Accueil</a>
-                <a href="{{ path('app_calendrier') }}">Calendrier</a>
-                <a>Blog</a>
-                <a>Contact</a>
-            </div>
-            <div id="espaceMembre">
-                <a href="{{ path('app_login') }}" class="connexion">Connexion</a>
-                <a href="{{ path('app_register') }}" class="inscription">Inscription</a>
-            </div>
-            <div id="menu-burger">
-                <img src="{{ asset('images/burger.png') }}">
-            </div>
-        </div>
-        <div id="menu-mobile">
-            <div class="menu">
-                <a class="active" href="{{ path('app_evenement_calendar') }}">Accueil</a>
-                <a href="{{ path('app_calendrier') }}">Calendrier</a>
-                <a>Blog</a>
-                <a>Contact</a>
-                <a href="{{ path('app_login') }}" class="connexion">Connexion</a>
-                <a href="{{ path('app_register') }}" class="inscription">Inscription</a>
-            </div>
-        </div>
+    <header class="bg-img">
+        {{ include('_nav.html.twig') }}
         <div id="title">
             <p>Calendrier connecté de</p>
             <span>Rosières-près-Troyes</span>
@@ -53,17 +24,17 @@
         <p class="description">Aecenas in mollis turpis. Aenean aliquam consectetur consequat.</p>
         <section>
             <div class="bloc">
-                <img src="{{ asset('images/calendrier.png') }}">
+                <img src="{{ asset('images/calendrier.png') }}" alt="Icone calendrier">
                 <p class="titre">Calendrier en ligne</p>
                 <p class="description">Etiam consectetur, quam cursus suscipit convallis, enim odio.</p>
             </div>
             <div class="bloc">
-                <img src="{{ asset('images/blog.png') }}">
+                <img src="{{ asset('images/blog.png') }}" alt="Icone blog">
                 <p class="titre">Blog en ligne</p>
                 <p class="description">Etiam consectetur, quam cursus suscipit convallis, enim odio.</p>
             </div>
             <div class="bloc">
-                <img src="{{ asset('images/crayon.png') }}">
+                <img src="{{ asset('images/crayon.png') }}" alt="Icone crayon">
                 <p class="titre">Rédiger vos évènements</p>
                 <p class="description">Etiam consectetur, quam cursus suscipit convallis, enim odio.</p>
             </div>
@@ -83,19 +54,9 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
-
     <script>
         fc_event_url = '{{ path('fc_load_events') }}';
     </script>
     <script src="{{ asset('assets/js/calendar.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            $('#menu-burger').click(function() {
-                $('#menu-mobile').toggle('active');
-                $('body').toggleClass('no-scroll');
-            });
-        });
-    </script>
 {% endblock %}

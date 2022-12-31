@@ -1,0 +1,17 @@
+.member-form {
+  font-family: "Poppins", sans-serif;
+
+  img {
+    height: 70px !important;
+  }
+
+  button {
+    background: #FC5185;
+    border: 0;
+    outline: 0;
+
+    &:hover, &:focus {
+      background: darken(#FC5185, 15%);
+    }
+  }
+}

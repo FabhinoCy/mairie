@@ -1,0 +1,54 @@
+<div id="hautDePage">
+
+    <div class="d-flex">
+        <div id="logo">
+            <a class="pb-3" href="{{ path('app_evenement_calendar') }}">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo Mairie Rosière">
+            </a>
+        </div>
+        <div class="navigation">
+            <a class="{{ app.request.attributes.get('_route') == 'app_evenement_calendar' ? 'active' : '' }}" href="{{ path('app_evenement_calendar') }}">Accueil</a>
+            <a class="{{ app.request.attributes.get('_route') == 'app_calendrier' ? 'active' : '' }}" href="{{ path('app_calendrier') }}">Calendrier</a>
+            <a class="{{ app.request.attributes.get('_route') == 'app_evenement_index' ? 'active' : '' }}" href="{{ path('app_evenement_index') }}">Blog</a>
+            <a>Contact</a>
+        </div>
+    </div>
+
+    <div id="espaceMembre">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <span class="pseudo">{{ app.user.name }}</span>
+            <a href="{{ path('app_logout') }}" class="inscription">Déconnexion</a>
+        {% else %}
+            <a href="{{ path('app_login') }}" class="connexion">Connexion</a>
+            <a href="{{ path('app_register') }}" class="inscription">Inscription</a>
+        {% endif %}
+    </div>
+    <div id="menu-burger">
+        <a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z" clip-rule="evenodd" />
+            </svg>
+        </a>
+    </div>
+</div>
+
+<div id="menu-mobile">
+    <a id="close-menu">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
+        </svg>
+    </a>
+    <div class="menu">
+        <a class="active" href="{{ path('app_evenement_calendar') }}">Accueil</a>
+        <a href="{{ path('app_calendrier') }}">Calendrier</a>
+        <a>Blog</a>
+        <a>Contact</a>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <span class="pseudo">{{ app.user.name }}</span>
+            <a href="{{ path('app_logout') }}" class="inscription">Déconnexion</a>
+        {% else %}
+            <a href="{{ path('app_login') }}" class="connexion">Connexion</a>
+            <a href="{{ path('app_register') }}" class="inscription">Inscription</a>
+        {% endif %}
+    </div>
+</div>
