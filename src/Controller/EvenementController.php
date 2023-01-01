@@ -18,7 +18,9 @@ class EvenementController extends AbstractController
     #[Route('/', name: 'app_evenement_index', methods: ['GET'])]
     public function index(EvenementRepository $evenementRepository): Response
     {
-        $evenements = $evenementRepository->findBy([], ['beginAt' => 'DESC']);
+        $publicEvents = $evenementRepository->findBy(['public' => true]);
+        $privatesEvents = $evenementRepository->findBy(['user' => $this->getUser(), 'public' => false]);
+        $evenements = array_merge($publicEvents, $privatesEvents);
 
         return $this->render('evenement/index.html.twig', [
             'evenements' => $evenements
