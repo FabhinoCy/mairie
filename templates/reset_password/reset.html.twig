@@ -24,21 +24,38 @@
                         <div class="card-body">
                             {{ form_start(resetForm) }}
 
-                            <div class="mb-1 form-floating">
-                                {{ form_widget(resetForm.plainPassword, {
+                            <div class="mb-3 form-floating">
+                                {{ form_widget(resetForm.plainPassword.first, {
                                     attr : {
                                         'class': 'form-control',
-                                        'placeholder': 'Mot de passe'
+                                        'placeholder': 'Mot de passe',
                                         'autocomplete': 'new-password'
                                     }
                                 }) }}
-                                {{ form_label(resetForm.plainPassword, null, {
+                                {{ form_label(resetForm.plainPassword.first , null, {
                                     label_attr : {
                                         'class': 'form-label'
                                     },
                                     label: 'Nouveau mot de passe'
                                 }) }}
                             </div>
+
+                            <div class="mb-3 form-floating">
+                                {{ form_widget(resetForm.plainPassword.second, {
+                                    attr : {
+                                        'class': 'form-control',
+                                        'placeholder': 'Mot de passe',
+                                        'autocomplete': 'new-password'
+                                    }
+                                }) }}
+                                {{ form_label(resetForm.plainPassword.second , null, {
+                                    label_attr : {
+                                        'class': 'form-label'
+                                    },
+                                    label: 'Confirmez votre nouveau mot de passe'
+                                }) }}
+                            </div>
+
 
                             <button type="submit" class="btn btn-primary w-100 fw-bold">Réinitialiser</button>
 

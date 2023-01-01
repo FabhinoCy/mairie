@@ -3,9 +3,6 @@
 {% block title %}Réinitialisation du mot de passe | Mairie Rosières-près-Troyes{% endblock %}
 
 {% block body %}
-    {% for flash_error in app.flashes('reset_password_error') %}
-        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-    {% endfor %}
 
     <section class="member-form">
         <nav class="navbar bg-body-tertiary mb-5">
@@ -42,6 +39,10 @@
                             <div class="mb-3">
                                 <small class="text-muted">Un email vous sera envoyé afin de réinitialiser votre mot de passe.</small>
                             </div>
+
+                            {% for flash_error in app.flashes('reset_password_error') %}
+                                <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+                            {% endfor %}
 
                             <button type="submit" class="btn btn-primary w-100 fw-bold">Envoyer le lien de réinitialisation</button>
 
