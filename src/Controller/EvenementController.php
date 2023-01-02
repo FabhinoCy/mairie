@@ -22,6 +22,11 @@ class EvenementController extends AbstractController
         $privatesEvents = $evenementRepository->findBy(['user' => $this->getUser(), 'public' => false]);
         $evenements = array_merge($publicEvents, $privatesEvents);
 
+        // FABIEN, TRIER LES EVENEMENTS PAR DATE DE DEBUT
+        usort($evenements, function($a, $b) {
+            return $a->getBeginAt()->getTimestamp() - $b->getBeginAt()->getTimestamp();
+        });
+
         return $this->render('evenement/index.html.twig', [
             'evenements' => $evenements
         ]);
